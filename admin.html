@@ -1,0 +1,1206 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin - La Clinique Spirituelle</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 2rem;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .header {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+
+        .header h1 {
+            color: #667eea;
+            margin-bottom: 0.5rem;
+        }
+
+        .header p {
+            color: #666;
+        }
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .stat-card {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 12px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .stat-icon {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+        }
+
+        .stat-icon.total { background: #e3f2fd; color: #2196f3; }
+        .stat-icon.urgent { background: #ffebee; color: #f44336; }
+        .stat-icon.today { background: #e8f5e9; color: #4caf50; }
+
+        .stat-content h3 {
+            font-size: 2rem;
+            color: #333;
+        }
+
+        .stat-content p {
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        .consultations-table {
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            overflow: hidden;
+        }
+
+        .table-header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 1.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .search-box {
+            position: relative;
+        }
+
+        .search-box input {
+            padding: 0.7rem 2.5rem 0.7rem 1rem;
+            border: none;
+            border-radius: 25px;
+            width: 300px;
+            font-size: 0.9rem;
+        }
+
+        .search-box i {
+            position: absolute;
+            right: 1rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #999;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        thead {
+            background: #f8f9fa;
+        }
+
+        th {
+            padding: 1rem;
+            text-align: left;
+            font-weight: 600;
+            color: #333;
+            border-bottom: 2px solid #dee2e6;
+        }
+
+        td {
+            padding: 1rem;
+            border-bottom: 1px solid #f0f0f0;
+            color: #666;
+        }
+
+        tr:hover {
+            background: #f8f9fa;
+        }
+
+        .urgence-badge {
+            display: inline-block;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        .urgence-1 { background: #d1ecf1; color: #0c5460; }
+        .urgence-2 { background: #d4edda; color: #155724; }
+        .urgence-3 { background: #fff3cd; color: #856404; }
+        .urgence-4 { background: #f8d7da; color: #721c24; }
+        .urgence-5 { background: #dc3545; color: white; }
+
+        .action-btn {
+            padding: 0.5rem 1rem;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 0.85rem;
+            margin: 0 0.2rem;
+            transition: all 0.3s;
+        }
+
+        .btn-view {
+            background: #2196f3;
+            color: white;
+        }
+
+        .btn-view:hover {
+            background: #1976d2;
+        }
+
+        .btn-whatsapp {
+            background: #25d366;
+            color: white;
+        }
+
+        .btn-whatsapp:hover {
+            background: #128c7e;
+        }
+
+        .btn-delete {
+            background: #f44336;
+            color: white;
+        }
+
+        .btn-delete:hover {
+            background: #d32f2f;
+        }
+
+        .loading {
+            text-align: center;
+            padding: 3rem;
+            color: #666;
+        }
+
+        .no-data {
+            text-align: center;
+            padding: 3rem;
+            color: #999;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.7);
+            z-index: 1000;
+            overflow-y: auto;
+        }
+
+        .modal-content {
+            background: white;
+            max-width: 600px;
+            margin: 2rem auto;
+            border-radius: 15px;
+            padding: 2rem;
+            position: relative;
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: #999;
+        }
+
+        .modal-close:hover {
+            color: #333;
+        }
+
+        .detail-row {
+            margin-bottom: 1.5rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid #f0f0f0;
+        }
+
+        .detail-row:last-child {
+            border-bottom: none;
+        }
+
+        .detail-label {
+            font-weight: 600;
+            color: #667eea;
+            margin-bottom: 0.3rem;
+            font-size: 0.9rem;
+        }
+
+        .detail-value {
+            color: #333;
+            font-size: 1rem;
+        }
+
+        .tabs {
+            display: flex;
+            gap: 0.5rem;
+            margin-bottom: 2rem;
+            background: white;
+            padding: 1rem;
+            border-radius: 12px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .tab-btn {
+            padding: 1rem 2rem;
+            border: none;
+            background: #f5f5f5;
+            color: #666;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+
+        .tab-btn:hover {
+            background: #e0e0e0;
+        }
+
+        .tab-btn.active {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        .status-badge {
+            display: inline-block;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        .status-en_attente {
+            background: #fff3cd;
+            color: #856404;
+        }
+
+        .status-valide {
+            background: #d4edda;
+            color: #155724;
+        }
+
+        .status-rejete {
+            background: #f8d7da;
+            color: #721c24;
+        }
+
+        .btn-validate {
+            background: #4caf50;
+            color: white;
+        }
+
+        .btn-validate:hover {
+            background: #45a049;
+        }
+
+        .btn-reject {
+            background: #ff9800;
+            color: white;
+        }
+
+        .btn-reject:hover {
+            background: #f57c00;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <div class="header">
+            <h1><i class="fas fa-hospital"></i> La Clinique Spirituelle - Administration</h1>
+            <p>Gestion des consultations et réservations</p>
+        </div>
+
+        <!-- Stats -->
+        <div class="stats">
+            <div class="stat-card">
+                <div class="stat-icon total">
+                    <i class="fas fa-users"></i>
+                </div>
+                <div class="stat-content">
+                    <h3 id="totalConsultations">0</h3>
+                    <p>Total Consultations</p>
+                </div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon urgent">
+                    <i class="fas fa-exclamation-triangle"></i>
+                </div>
+                <div class="stat-content">
+                    <h3 id="urgentConsultations">0</h3>
+                    <p>Cas Urgents (4-5)</p>
+                </div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon today">
+                    <i class="fas fa-calendar-day"></i>
+                </div>
+                <div class="stat-content">
+                    <h3 id="todayConsultations">0</h3>
+                    <p>Aujourd'hui</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tabs -->
+        <div class="tabs">
+            <button class="tab-btn active" onclick="switchTab('consultations')">
+                <i class="fas fa-users"></i> Consultations
+            </button>
+            <button class="tab-btn" onclick="switchTab('temoignages')">
+                <i class="fas fa-comments"></i> Témoignages
+            </button>
+            <button class="tab-btn" onclick="switchTab('sessions')">
+                <i class="fas fa-calendar-alt"></i> Sessions
+            </button>
+        </div>
+
+        <!-- Consultations Tab -->
+        <div id="consultations-tab" class="tab-content active">
+            <div class="consultations-table">
+            <div class="table-header">
+                <h2><i class="fas fa-list"></i> Liste des Consultations</h2>
+                <div style="display: flex; gap: 1rem; align-items: center;">
+                    <select id="sessionFilter" style="padding: 0.8rem; border: 1px solid #ddd; border-radius: 8px; font-size: 0.9rem;">
+                        <option value="all">Toutes les sessions</option>
+                    </select>
+                    <div class="search-box">
+                        <input type="text" id="searchInput" placeholder="Rechercher par nom, téléphone...">
+                        <i class="fas fa-search"></i>
+                    </div>
+                </div>
+            </div>
+
+            <div id="tableContent">
+                <div class="loading">
+                    <i class="fas fa-spinner fa-spin" style="font-size: 2rem; color: #667eea;"></i>
+                    <p>Chargement des consultations...</p>
+                </div>
+            </div>
+        </div>
+            </div>
+        </div>
+
+        <!-- Témoignages Tab -->
+        <div id="temoignages-tab" class="tab-content">
+            <div class="consultations-table">
+                <div class="table-header">
+                    <h2><i class="fas fa-comments"></i> Gestion des Témoignages</h2>
+                    <div class="search-box">
+                        <input type="text" id="searchTemoignages" placeholder="Rechercher témoignage...">
+                        <i class="fas fa-search"></i>
+                    </div>
+                </div>
+
+                <div id="temoignagesContent">
+                    <div class="loading">
+                        <i class="fas fa-spinner fa-spin" style="font-size: 2rem; color: #667eea;"></i>
+                        <p>Chargement des témoignages...</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Sessions Tab -->
+        <div id="sessions-tab" class="tab-content">
+            <div class="consultations-table">
+                <div class="table-header">
+                    <h2><i class="fas fa-calendar-alt"></i> Gestion des Sessions</h2>
+                    <button class="action-btn btn-validate" onclick="showAddSessionForm()" style="padding: 0.8rem 1.5rem;">
+                        <i class="fas fa-plus"></i> Nouvelle Session
+                    </button>
+                </div>
+
+                <!-- Formulaire Nouvelle Session (masqué par défaut) -->
+                <div id="addSessionForm" style="display: none; background: white; padding: 2rem; border-radius: 12px; margin-bottom: 2rem; box-shadow: 0 5px 15px rgba(0,0,0,0.1);">
+                    <h3 style="margin-bottom: 1.5rem; color: #667eea;"><i class="fas fa-calendar-plus"></i> Nouvelle Session</h3>
+                    <form onsubmit="createSession(event)">
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1rem;">
+                            <div>
+                                <label style="display: block; margin-bottom: 0.5rem; font-weight: 600;">Date de début *</label>
+                                <input type="date" id="new_date_debut" required style="width: 100%; padding: 0.8rem; border: 1px solid #ddd; border-radius: 8px;">
+                            </div>
+                            <div>
+                                <label style="display: block; margin-bottom: 0.5rem; font-weight: 600;">Heure *</label>
+                                <input type="time" id="new_heure" required value="18:00" style="width: 100%; padding: 0.8rem; border: 1px solid #ddd; border-radius: 8px;">
+                            </div>
+                        </div>
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1rem;">
+                            <div>
+                                <label style="display: block; margin-bottom: 0.5rem; font-weight: 600;">Places totales *</label>
+                                <input type="number" id="new_places_total" required value="20" min="1" max="100" style="width: 100%; padding: 0.8rem; border: 1px solid #ddd; border-radius: 8px;">
+                            </div>
+                            <div>
+                                <label style="display: block; margin-bottom: 0.5rem; font-weight: 600;">Type de session *</label>
+                                <select id="new_type_session" style="width: 100%; padding: 0.8rem; border: 1px solid #ddd; border-radius: 8px;">
+                                    <option value="en_ligne">En ligne (Zoom)</option>
+                                    <option value="presentiel">Présentiel (Djibi)</option>
+                                    <option value="hybride">Hybride</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div style="margin-bottom: 1.5rem;">
+                            <label style="display: block; margin-bottom: 0.5rem; font-weight: 600;">Description</label>
+                            <textarea id="new_description" rows="3" style="width: 100%; padding: 0.8rem; border: 1px solid #ddd; border-radius: 8px;" placeholder="Session intensive de traitement spirituel - 4 jours consécutifs"></textarea>
+                        </div>
+                        <div style="display: flex; gap: 1rem;">
+                            <button type="submit" class="action-btn btn-validate" style="flex: 1; padding: 1rem;">
+                                <i class="fas fa-save"></i> Créer la Session
+                            </button>
+                            <button type="button" onclick="hideAddSessionForm()" class="action-btn btn-reject" style="flex: 1; padding: 1rem;">
+                                <i class="fas fa-times"></i> Annuler
+                            </button>
+                        </div>
+                    </form>
+                </div>
+
+                <div id="sessionsContent">
+                    <div class="loading">
+                        <i class="fas fa-spinner fa-spin" style="font-size: 2rem; color: #667eea;"></i>
+                        <p>Chargement des sessions...</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Détails -->
+    <div id="detailModal" class="modal">
+        <div class="modal-content">
+            <span class="modal-close" onclick="closeModal()">&times;</span>
+            <h2 style="color: #667eea; margin-bottom: 1.5rem;"><i class="fas fa-user-injured"></i> Détails de la Consultation</h2>
+            <div id="modalDetails"></div>
+        </div>
+    </div>
+
+    <script>
+        let consultations = [];
+
+        // Charger les consultations
+        async function loadConsultations() {
+            try {
+                // Charger consultations et sessions en parallèle
+                const [consultationsRes, sessionsRes] = await Promise.all([
+                    fetch('/api/consultations'),
+                    fetch('/api/sessions')
+                ]);
+                
+                consultations = await consultationsRes.json();
+                const allSessions = await sessionsRes.json();
+                
+                // Populer le filtre de sessions
+                populateSessionFilter(allSessions);
+                
+                displayConsultations(consultations);
+                updateStats();
+            } catch (error) {
+                console.error('Erreur:', error);
+                document.getElementById('tableContent').innerHTML = `
+                    <div class="no-data">
+                        <i class="fas fa-exclamation-circle" style="font-size: 3rem; color: #dc3545; margin-bottom: 1rem;"></i>
+                        <p>Erreur lors du chargement des consultations</p>
+                    </div>
+                `;
+            }
+        }
+
+        // Populer le filtre de sessions
+        function populateSessionFilter(sessions) {
+            const filter = document.getElementById('sessionFilter');
+            filter.innerHTML = '<option value="all">Toutes les sessions</option>';
+            
+            sessions.forEach(s => {
+                const date = new Date(s.date_debut).toLocaleDateString('fr-FR', { 
+                    day: 'numeric', 
+                    month: 'short', 
+                    year: 'numeric' 
+                });
+                const consultationsCount = consultations.filter(c => c.session_id === s.id).length;
+                const option = document.createElement('option');
+                option.value = s.id;
+                option.textContent = `${date} (${consultationsCount} réservations)`;
+                filter.appendChild(option);
+            });
+        }
+
+        // Filtrer par session
+        document.addEventListener('DOMContentLoaded', () => {
+            const sessionFilter = document.getElementById('sessionFilter');
+            if (sessionFilter) {
+                sessionFilter.addEventListener('change', () => {
+                    const sessionId = sessionFilter.value;
+                    if (sessionId === 'all') {
+                        displayConsultations(consultations);
+                    } else {
+                        const filtered = consultations.filter(c => c.session_id == sessionId);
+                        displayConsultations(filtered);
+                    }
+                });
+            }
+        });
+
+        // Mettre à jour les stats
+        function updateStats() {
+            const total = consultations.length;
+            const urgent = consultations.filter(c => c.niveau_urgence >= 4).length;
+            const today = consultations.filter(c => {
+                const date = new Date(c.date_consultation);
+                const now = new Date();
+                return date.toDateString() === now.toDateString();
+            }).length;
+
+            document.getElementById('totalConsultations').textContent = total;
+            document.getElementById('urgentConsultations').textContent = urgent;
+            document.getElementById('todayConsultations').textContent = today;
+        }
+
+        // Afficher les consultations
+        function displayConsultations(data) {
+            if (data.length === 0) {
+                document.getElementById('tableContent').innerHTML = `
+                    <div class="no-data">
+                        <i class="fas fa-inbox" style="font-size: 3rem; color: #999; margin-bottom: 1rem;"></i>
+                        <p>Aucune consultation pour le moment</p>
+                    </div>
+                `;
+                return;
+            }
+
+            const tableHTML = `
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Date</th>
+                            <th>Patient</th>
+                            <th>Téléphone</th>
+                            <th>Pays/Ville</th>
+                            <th>Urgence</th>
+                            <th>Problème</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        ${data.map(c => `
+                            <tr>
+                                <td>${new Date(c.date_consultation).toLocaleDateString('fr-FR')}</td>
+                                <td><strong>${c.prenom} ${c.nom}</strong></td>
+                                <td>${c.telephone}</td>
+                                <td>${c.ville}, ${c.pays}</td>
+                                <td><span class="urgence-badge urgence-${c.niveau_urgence}">${c.niveau_urgence}/5</span></td>
+                                <td>${c.probleme_specifique.substring(0, 50)}...</td>
+                                <td>
+                                    <button class="action-btn btn-view" onclick="viewDetails(${c.id})">
+                                        <i class="fas fa-eye"></i> Voir
+                                    </button>
+                                    <button class="action-btn btn-whatsapp" onclick="contactWhatsApp('${c.telephone}', '${c.prenom}')">
+                                        <i class="fab fa-whatsapp"></i>
+                                    </button>
+                                    <button class="action-btn btn-delete" onclick="deleteConsultation(${c.id}, '${c.prenom} ${c.nom}')">
+                                        <i class="fas fa-trash"></i>
+                                    </button>
+                                </td>
+                            </tr>
+                        `).join('')}
+                    </tbody>
+                </table>
+            `;
+
+            document.getElementById('tableContent').innerHTML = tableHTML;
+        }
+
+        // Voir les détails
+        function viewDetails(id) {
+            const consultation = consultations.find(c => c.id === id);
+            if (!consultation) return;
+
+            const detailsHTML = `
+                <div class="detail-row">
+                    <div class="detail-label">Patient</div>
+                    <div class="detail-value">${consultation.prenom} ${consultation.nom}</div>
+                </div>
+                <div class="detail-row">
+                    <div class="detail-label">Email</div>
+                    <div class="detail-value">${consultation.email || 'Non fourni'}</div>
+                </div>
+                <div class="detail-row">
+                    <div class="detail-label">Téléphone</div>
+                    <div class="detail-value">${consultation.telephone}</div>
+                </div>
+                <div class="detail-row">
+                    <div class="detail-label">Localisation</div>
+                    <div class="detail-value">${consultation.ville}, ${consultation.pays}</div>
+                </div>
+                <div class="detail-row">
+                    <div class="detail-label">Niveau d'urgence</div>
+                    <div class="detail-value"><span class="urgence-badge urgence-${consultation.niveau_urgence}">${consultation.niveau_urgence}/5</span></div>
+                </div>
+                <div class="detail-row">
+                    <div class="detail-label">Depuis quand</div>
+                    <div class="detail-value">${consultation.depuis_quand || 'Non spécifié'}</div>
+                </div>
+                <div class="detail-row">
+                    <div class="detail-label">Problème spécifique</div>
+                    <div class="detail-value" style="white-space: pre-wrap;">${consultation.probleme_specifique}</div>
+                </div>
+                <div class="detail-row">
+                    <div class="detail-label">Message additionnel</div>
+                    <div class="detail-value" style="white-space: pre-wrap;">${consultation.message || 'Aucun'}</div>
+                </div>
+                <div class="detail-row">
+                    <div class="detail-label">Date de consultation</div>
+                    <div class="detail-value">${new Date(consultation.date_consultation).toLocaleString('fr-FR')}</div>
+                </div>
+            `;
+
+            document.getElementById('modalDetails').innerHTML = detailsHTML;
+            document.getElementById('detailModal').style.display = 'block';
+        }
+
+        // Fermer modal
+        function closeModal() {
+            document.getElementById('detailModal').style.display = 'none';
+        }
+
+        // Contacter WhatsApp
+        function contactWhatsApp(telephone, prenom) {
+            const message = encodeURIComponent(`Bonjour ${prenom}, c'est Frère Elie de La Clinique Spirituelle. `);
+            window.open(`https://wa.me/${telephone.replace(/\+/g, '')}?text=${message}`, '_blank');
+        }
+
+        // Supprimer consultation
+        async function deleteConsultation(id, nom) {
+            if (!confirm(`Êtes-vous sûr de vouloir supprimer la consultation de ${nom} ?\n\nCette action est IRRÉVERSIBLE !`)) {
+                return;
+            }
+
+            try {
+                const response = await fetch(`/api/consultations/${id}`, {
+                    method: 'DELETE'
+                });
+
+                if (response.ok) {
+                    alert('Consultation supprimée avec succès !');
+                    loadConsultations(); // Recharger la liste
+                } else {
+                    alert('Erreur lors de la suppression. Veuillez réessayer.');
+                }
+            } catch (error) {
+                console.error('Erreur:', error);
+                alert('Erreur de connexion. Veuillez réessayer.');
+            }
+        }
+
+        // Recherche
+        document.getElementById('searchInput').addEventListener('input', (e) => {
+            const search = e.target.value.toLowerCase();
+            const filtered = consultations.filter(c => 
+                c.prenom.toLowerCase().includes(search) ||
+                c.nom.toLowerCase().includes(search) ||
+                c.telephone.includes(search) ||
+                c.ville.toLowerCase().includes(search) ||
+                c.pays.toLowerCase().includes(search)
+            );
+            displayConsultations(filtered);
+        });
+
+        // Fermer modal en cliquant à l'extérieur
+        window.onclick = (event) => {
+            const modal = document.getElementById('detailModal');
+            if (event.target === modal) {
+                closeModal();
+            }
+        };
+
+        // ============ GESTION DES ONGLETS ============
+        function switchTab(tab) {
+            // Cacher tous les onglets
+            document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
+            document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+            
+            // Afficher l'onglet sélectionné
+            document.getElementById(tab + '-tab').classList.add('active');
+            event.target.classList.add('active');
+            
+            // Charger les données selon l'onglet
+            if (tab === 'temoignages') {
+                loadTemoignages();
+            } else if (tab === 'sessions') {
+                loadSessions();
+            }
+        }
+
+        // ============ GESTION DES TÉMOIGNAGES ============
+        let temoignages = [];
+
+        async function loadTemoignages() {
+            try {
+                const response = await fetch('/api/temoignages');
+                temoignages = await response.json();
+                displayTemoignages(temoignages);
+            } catch (error) {
+                console.error('Erreur:', error);
+                document.getElementById('temoignagesContent').innerHTML = `
+                    <div class="no-data">
+                        <i class="fas fa-exclamation-circle" style="font-size: 3rem; color: #dc3545; margin-bottom: 1rem;"></i>
+                        <p>Erreur lors du chargement des témoignages</p>
+                    </div>
+                `;
+            }
+        }
+
+        function displayTemoignages(data) {
+            if (data.length === 0) {
+                document.getElementById('temoignagesContent').innerHTML = `
+                    <div class="no-data">
+                        <i class="fas fa-inbox" style="font-size: 3rem; color: #999; margin-bottom: 1rem;"></i>
+                        <p>Aucun témoignage pour le moment</p>
+                    </div>
+                `;
+                return;
+            }
+
+            const tableHTML = `
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Date</th>
+                            <th>Nom</th>
+                            <th>Localisation</th>
+                            <th>Problème Traité</th>
+                            <th>Statut</th>
+                            <th>Note</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        ${data.map(t => `
+                            <tr>
+                                <td>${new Date(t.date_soumission).toLocaleDateString('fr-FR')}</td>
+                                <td><strong>${t.nom}</strong></td>
+                                <td>${t.localisation || 'Non spécifié'}</td>
+                                <td>${t.probleme_traite}</td>
+                                <td><span class="status-badge status-${t.statut}">${getStatusLabel(t.statut)}</span></td>
+                                <td>${'⭐'.repeat(t.note || 5)}</td>
+                                <td>
+                                    <button class="action-btn btn-view" onclick="viewTemoignage(${t.id})" title="Voir détails">
+                                        <i class="fas fa-eye"></i>
+                                    </button>
+                                    ${t.statut === 'en_attente' ? `
+                                        <button class="action-btn btn-validate" onclick="validateTemoignage(${t.id})" title="Valider">
+                                            <i class="fas fa-check"></i>
+                                        </button>
+                                        <button class="action-btn btn-reject" onclick="rejectTemoignage(${t.id})" title="Rejeter">
+                                            <i class="fas fa-times"></i>
+                                        </button>
+                                    ` : ''}
+                                    <button class="action-btn btn-delete" onclick="deleteTemoignage(${t.id}, '${t.nom}')" title="Supprimer">
+                                        <i class="fas fa-trash"></i>
+                                    </button>
+                                </td>
+                            </tr>
+                        `).join('')}
+                    </tbody>
+                </table>
+            `;
+
+            document.getElementById('temoignagesContent').innerHTML = tableHTML;
+        }
+
+        function getStatusLabel(statut) {
+            const labels = {
+                'en_attente': 'En attente',
+                'valide': 'Validé',
+                'rejete': 'Rejeté'
+            };
+            return labels[statut] || statut;
+        }
+
+        function viewTemoignage(id) {
+            const temoignage = temoignages.find(t => t.id === id);
+            if (!temoignage) return;
+
+            const detailsHTML = `
+                <div class="detail-row">
+                    <div class="detail-label">Nom</div>
+                    <div class="detail-value">${temoignage.nom}</div>
+                </div>
+                <div class="detail-row">
+                    <div class="detail-label">Localisation</div>
+                    <div class="detail-value">${temoignage.localisation || 'Non spécifié'}</div>
+                </div>
+                <div class="detail-row">
+                    <div class="detail-label">Problème traité</div>
+                    <div class="detail-value">${temoignage.probleme_traite}</div>
+                </div>
+                <div class="detail-row">
+                    <div class="detail-label">Note</div>
+                    <div class="detail-value">${'⭐'.repeat(temoignage.note || 5)} (${temoignage.note}/5)</div>
+                </div>
+                <div class="detail-row">
+                    <div class="detail-label">Témoignage complet</div>
+                    <div class="detail-value" style="white-space: pre-wrap; line-height: 1.8;">${temoignage.temoignage}</div>
+                </div>
+                <div class="detail-row">
+                    <div class="detail-label">Statut</div>
+                    <div class="detail-value"><span class="status-badge status-${temoignage.statut}">${getStatusLabel(temoignage.statut)}</span></div>
+                </div>
+                <div class="detail-row">
+                    <div class="detail-label">Date de soumission</div>
+                    <div class="detail-value">${new Date(temoignage.date_soumission).toLocaleString('fr-FR')}</div>
+                </div>
+                ${temoignage.date_validation ? `
+                    <div class="detail-row">
+                        <div class="detail-label">Date de validation</div>
+                        <div class="detail-value">${new Date(temoignage.date_validation).toLocaleString('fr-FR')}</div>
+                    </div>
+                ` : ''}
+            `;
+
+            document.getElementById('modalDetails').innerHTML = detailsHTML;
+            document.getElementById('detailModal').style.display = 'block';
+        }
+
+        async function validateTemoignage(id) {
+            if (!confirm('Valider ce témoignage ? Il sera visible publiquement sur le site.')) {
+                return;
+            }
+
+            try {
+                const response = await fetch(`/api/temoignages/${id}/valider`, {
+                    method: 'PUT'
+                });
+
+                if (response.ok) {
+                    alert('Témoignage validé avec succès !');
+                    loadTemoignages();
+                } else {
+                    alert('Erreur lors de la validation.');
+                }
+            } catch (error) {
+                console.error('Erreur:', error);
+                alert('Erreur de connexion.');
+            }
+        }
+
+        async function rejectTemoignage(id) {
+            if (!confirm('Rejeter ce témoignage ? Il ne sera pas visible publiquement.')) {
+                return;
+            }
+
+            try {
+                const response = await fetch(`/api/temoignages/${id}/rejeter`, {
+                    method: 'PUT'
+                });
+
+                if (response.ok) {
+                    alert('Témoignage rejeté.');
+                    loadTemoignages();
+                } else {
+                    alert('Erreur lors du rejet.');
+                }
+            } catch (error) {
+                console.error('Erreur:', error);
+                alert('Erreur de connexion.');
+            }
+        }
+
+        async function deleteTemoignage(id, nom) {
+            if (!confirm(`Supprimer définitivement le témoignage de ${nom} ?\n\nCette action est IRRÉVERSIBLE !`)) {
+                return;
+            }
+
+            try {
+                const response = await fetch(`/api/temoignages/${id}`, {
+                    method: 'DELETE'
+                });
+
+                if (response.ok) {
+                    alert('Témoignage supprimé avec succès !');
+                    loadTemoignages();
+                } else {
+                    alert('Erreur lors de la suppression.');
+                }
+            } catch (error) {
+                console.error('Erreur:', error);
+                alert('Erreur de connexion.');
+            }
+        }
+
+        // Recherche témoignages
+        document.getElementById('searchTemoignages').addEventListener('input', (e) => {
+            const search = e.target.value.toLowerCase();
+            const filtered = temoignages.filter(t => 
+                t.nom.toLowerCase().includes(search) ||
+                t.probleme_traite.toLowerCase().includes(search) ||
+                t.temoignage.toLowerCase().includes(search) ||
+                (t.localisation && t.localisation.toLowerCase().includes(search))
+            );
+            displayTemoignages(filtered);
+        });
+
+        // ============ GESTION DES SESSIONS ============
+        let sessions = [];
+
+        async function loadSessions() {
+            try {
+                const response = await fetch('/api/sessions');
+                sessions = await response.json();
+                displaySessions(sessions);
+            } catch (error) {
+                console.error('Erreur:', error);
+                document.getElementById('sessionsContent').innerHTML = `
+                    <div class="no-data">
+                        <i class="fas fa-exclamation-circle" style="font-size: 3rem; color: #dc3545; margin-bottom: 1rem;"></i>
+                        <p>Erreur lors du chargement des sessions</p>
+                    </div>
+                `;
+            }
+        }
+
+        function displaySessions(data) {
+            if (data.length === 0) {
+                document.getElementById('sessionsContent').innerHTML = `
+                    <div class="no-data">
+                        <i class="fas fa-inbox" style="font-size: 3rem; color: #999; margin-bottom: 1rem;"></i>
+                        <p>Aucune session pour le moment</p>
+                    </div>
+                `;
+                return;
+            }
+
+            const tableHTML = `
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Date Début</th>
+                            <th>Heure</th>
+                            <th>Type</th>
+                            <th>Places</th>
+                            <th>Statut</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        ${data.map(s => {
+                            const placesRestantes = s.places_total - s.places_reservees;
+                            const pourcentageRempli = (s.places_reservees / s.places_total * 100).toFixed(0);
+                            const datePassee = new Date(s.date_debut) < new Date();
+                            
+                            return `
+                            <tr>
+                                <td><strong>${new Date(s.date_debut).toLocaleDateString('fr-FR', { weekday: 'short', year: 'numeric', month: 'short', day: 'numeric' })}</strong></td>
+                                <td>${s.heure}</td>
+                                <td><span style="padding: 0.3rem 0.8rem; background: #e3f2fd; color: #1976d2; border-radius: 20px; font-size: 0.85rem;">${s.type_session}</span></td>
+                                <td>
+                                    <div style="text-align: center;">
+                                        <strong style="color: ${placesRestantes <= 5 ? '#e74c3c' : placesRestantes <= 10 ? '#f39c12' : '#27ae60'};">
+                                            ${placesRestantes}/${s.places_total}
+                                        </strong>
+                                        <div style="background: #e0e0e0; border-radius: 10px; height: 8px; margin-top: 0.3rem;">
+                                            <div style="background: ${pourcentageRempli >= 100 ? '#e74c3c' : pourcentageRempli >= 80 ? '#f39c12' : '#27ae60'}; width: ${pourcentageRempli}%; height: 100%; border-radius: 10px;"></div>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>
+                                    <span class="status-badge ${datePassee ? 'status-rejete' : s.statut === 'ouverte' ? 'status-valide' : 'status-en_attente'}">
+                                        ${datePassee ? 'Passée' : s.statut === 'ouverte' ? 'Ouverte' : 'Fermée'}
+                                    </span>
+                                </td>
+                                <td>
+                                    ${!datePassee && s.statut === 'ouverte' ? `
+                                        <button class="action-btn btn-reject" onclick="closeSession(${s.id})" title="Fermer">
+                                            <i class="fas fa-lock"></i>
+                                        </button>
+                                    ` : ''}
+                                    ${!datePassee && s.statut === 'fermee' ? `
+                                        <button class="action-btn btn-validate" onclick="openSession(${s.id})" title="Ouvrir">
+                                            <i class="fas fa-lock-open"></i>
+                                        </button>
+                                    ` : ''}
+                                    <button class="action-btn btn-delete" onclick="deleteSession(${s.id}, '${new Date(s.date_debut).toLocaleDateString('fr-FR')}')" title="Supprimer">
+                                        <i class="fas fa-trash"></i>
+                                    </button>
+                                </td>
+                            </tr>
+                        `}).join('')}
+                    </tbody>
+                </table>
+            `;
+
+            document.getElementById('sessionsContent').innerHTML = tableHTML;
+        }
+
+        function showAddSessionForm() {
+            document.getElementById('addSessionForm').style.display = 'block';
+            // Définir la date minimale à aujourd'hui
+            document.getElementById('new_date_debut').min = new Date().toISOString().split('T')[0];
+        }
+
+        function hideAddSessionForm() {
+            document.getElementById('addSessionForm').style.display = 'none';
+            document.querySelector('#addSessionForm form').reset();
+        }
+
+        async function createSession(event) {
+            event.preventDefault();
+            
+            const sessionData = {
+                date_debut: document.getElementById('new_date_debut').value,
+                heure: document.getElementById('new_heure').value,
+                places_total: parseInt(document.getElementById('new_places_total').value),
+                type_session: document.getElementById('new_type_session').value,
+                description: document.getElementById('new_description').value
+            };
+
+            try {
+                const response = await fetch('/api/sessions', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(sessionData)
+                });
+
+                if (response.ok) {
+                    alert('✅ Session créée avec succès !');
+                    hideAddSessionForm();
+                    loadSessions();
+                } else {
+                    alert('❌ Erreur lors de la création de la session.');
+                }
+            } catch (error) {
+                console.error('Erreur:', error);
+                alert('❌ Erreur de connexion.');
+            }
+        }
+
+        async function closeSession(id) {
+            if (!confirm('Fermer cette session ? Les réservations seront bloquées.')) return;
+
+            const session = sessions.find(s => s.id === id);
+            if (!session) return;
+
+            try {
+                const response = await fetch(`/api/sessions/${id}`, {
+                    method: 'PUT',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        date_debut: session.date_debut,
+                        heure: session.heure,
+                        places_total: session.places_total,
+                        statut: 'fermee',
+                        type_session: session.type_session,
+                        description: session.description
+                    })
+                });
+
+                if (response.ok) {
+                    alert('Session fermée.');
+                    loadSessions();
+                } else {
+                    alert('Erreur.');
+                }
+            } catch (error) {
+                console.error('Erreur:', error);
+            }
+        }
+
+        async function openSession(id) {
+            if (!confirm('Réouvrir cette session pour les réservations ?')) return;
+
+            const session = sessions.find(s => s.id === id);
+            if (!session) return;
+
+            try {
+                const response = await fetch(`/api/sessions/${id}`, {
+                    method: 'PUT',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        date_debut: session.date_debut,
+                        heure: session.heure,
+                        places_total: session.places_total,
+                        statut: 'ouverte',
+                        type_session: session.type_session,
+                        description: session.description
+                    })
+                });
+
+                if (response.ok) {
+                    alert('Session rouverte.');
+                    loadSessions();
+                } else {
+                    alert('Erreur.');
+                }
+            } catch (error) {
+                console.error('Erreur:', error);
+            }
+        }
+
+        async function deleteSession(id, date) {
+            if (!confirm(`Supprimer définitivement la session du ${date} ?\n\nCette action est IRRÉVERSIBLE !`)) return;
+
+            try {
+                const response = await fetch(`/api/sessions/${id}`, {
+                    method: 'DELETE'
+                });
+
+                if (response.ok) {
+                    alert('Session supprimée.');
+                    loadSessions();
+                } else {
+                    alert('Erreur.');
+                }
+            } catch (error) {
+                console.error('Erreur:', error);
+            }
+        }
+
+        // Charger au démarrage
+        loadConsultations();
+
+        // Actualiser toutes les 30 secondes
+        setInterval(loadConsultations, 30000);
+    </script>
+</body>
+</html>

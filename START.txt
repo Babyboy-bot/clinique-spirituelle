@@ -1,0 +1,127 @@
+============================================
+  LA CLINIQUE SPIRITUELLE - DÉMARRAGE
+============================================
+
+✅ PROJET CRÉÉ AVEC SUCCÈS !
+
+📁 Emplacement : C:\Users\LENOVO\CascadeProjects\clinique-spirituelle
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  COMMENT DÉMARRER (3 ÉTAPES)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+1️⃣ INSTALLER LES DÉPENDANCES
+   Ouvrir PowerShell dans ce dossier et taper :
+   
+   npm install
+
+2️⃣ CONFIGURER LES NUMÉROS
+   Créer le fichier .env :
+   
+   copy .env.example .env
+   
+   Puis éditer .env avec Notepad et remplir :
+   - WAVE_NUMBER=+225XXXXXXXXXX
+   - ORANGE_MONEY_NUMBER=+225XXXXXXXXXX  
+   - WHATSAPP_SUPPORT_NUMBER=+225XXXXXXXXXX
+
+3️⃣ DÉMARRER LE SERVEUR
+   
+   npm start
+   
+   Puis ouvrir dans le navigateur :
+   http://localhost:3001
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  CE QUI A ÉTÉ CRÉÉ
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+✅ index.html - Site web adapté pour La Clinique
+   → Slogan : "Venez avec votre problème, repartez avec la solution"
+   → Concept médical spirituel
+   → 4 jours consécutifs
+   → Prix : 50,000 FCFA
+   → Formulaire avec : problème spécifique, niveau urgence, depuis quand
+
+✅ server.js - Serveur Node.js (port 3001)
+   → API /api/consultation (au lieu de /api/inscription)
+   → Base de données consultations.db
+   → Emails et WhatsApp automatiques
+   → Prix 50K intégré
+
+✅ consultation-script.js - JavaScript formulaire
+   → Gère la soumission du formulaire
+   → Envoie vers /api/consultation
+   → Affiche message succès
+
+✅ styles.css - Styles identiques à formation
+
+✅ script.js - JavaScript général (navigation, FAQ)
+
+✅ package.json - Dépendances Node.js
+
+✅ .env.example - Modèle configuration
+
+✅ Images copiées : logo.png.jpeg, photo-frere-elie.JPG.jpg
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  INFORMATIONS À COMPLÉTER
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+⚠️ DANS .ENV (URGENT) :
+   ❓ WAVE_NUMBER=+225__________
+   ❓ ORANGE_MONEY_NUMBER=+225__________
+   ❓ WHATSAPP_SUPPORT_NUMBER=+225__________
+
+⚠️ DANS INDEX.HTML :
+   Rechercher "[À CONFIRMER]" et "[HORAIRES À DÉFINIR]"
+   
+   ❓ Date exacte mardi prochain : __/__/2024
+   ❓ Horaires Jour 1 : __h__ - __h__
+   ❓ Horaires Jour 2 : __h__ - __h__
+   ❓ Horaires Jour 3 : __h__ - __h__
+   ❓ Horaires Jour 4 : __h__ - __h__
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  DIFFÉRENCES AVEC FORMATION SPIRITUELLE
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+CLINIQUE                     FORMATION
+------------------------------------------
+4 jours consécutifs          4 samedis (1 mois)
+50,000 FCFA                  20,000 FCFA
+Traitement intensif          Apprentissage progressif
+Problème spécifique          Formation générale
+Port 3001                    Port 3000
+consultations.db             inscriptions.db
+Ton médical                  Ton éducatif
+
+LES DEUX SONT COMPLÉMENTAIRES !
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  FICHIERS DOCUMENTATION
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+📄 README.md - Documentation technique complète
+📄 RECAP-FRERE-ELIE.md - Récapitulatif détaillé pour Frère Elie
+📄 INSTRUCTIONS-ADAPTATION.md - Guide si besoin de modifier HTML
+📄 START.txt - Ce fichier (démarrage rapide)
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  SUPPORT
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+📧 Email : montcarmel64@gmail.com
+📱 WhatsApp : +225 07 04 76 44 43
+
+Communauté du Mont Carmel
+Frère Elie Kassi Philippe - Président
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+🙏 Que Dieu bénisse ce nouveau ministère !
+
+Projet créé le 28 Octobre 2024
+Prochaine session : Mardi prochain (date à confirmer)
+
+============================================

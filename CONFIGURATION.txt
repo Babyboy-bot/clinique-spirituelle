@@ -1,0 +1,89 @@
+═══════════════════════════════════════════════════════
+  CONFIGURATION FINALE - LA CLINIQUE SPIRITUELLE
+═══════════════════════════════════════════════════════
+
+✅ DATE ET HORAIRES CONFIGURÉS !
+
+📅 Date : Mardi 4 Novembre 2024
+⏰ Horaires : 1h30 par jour (4 jours consécutifs)
+💰 Prix : 50,000 FCFA
+
+═══════════════════════════════════════════════════════
+  CRÉER LE FICHIER .ENV (IMPORTANT)
+═══════════════════════════════════════════════════════
+
+Le fichier .env est protégé (dans .gitignore). 
+Vous devez le créer MANUELLEMENT :
+
+1️⃣ Ouvrir PowerShell dans ce dossier
+2️⃣ Taper : copy .env.example .env
+3️⃣ Taper : notepad .env
+4️⃣ Copier-coller ce contenu :
+
+---COPIER À PARTIR D'ICI---
+
+# Configuration Email
+EMAIL_USER=montcarmel64@gmail.com
+EMAIL_PASSWORD=votre-mot-de-passe-app
+ADMIN_EMAIL=montcarmel64@gmail.com
+
+# Port du serveur (3001 pour éviter conflit avec formation)
+PORT=3001
+
+# Numéros de Paiement (MÊMES QUE FORMATION)
+WAVE_NUMBER=+225XXXXXXXXXX
+ORANGE_MONEY_NUMBER=+225XXXXXXXXXX
+WHATSAPP_SUPPORT_NUMBER=+225704764443
+
+# Configuration WhatsApp (Optionnel)
+TWILIO_ACCOUNT_SID=
+TWILIO_AUTH_TOKEN=
+TWILIO_WHATSAPP_NUMBER=
+
+WHATSAPP_API_URL=
+WHATSAPP_API_TOKEN=
+
+# Mode
+NODE_ENV=development
+
+---COPIER JUSQU'ICI---
+
+5️⃣ Remplacer les XXXXXXXXXX par les vrais numéros Wave/Orange Money
+6️⃣ Sauvegarder et fermer
+
+═══════════════════════════════════════════════════════
+  NUMÉROS À DEMANDER À FRÈRE ELIE
+═══════════════════════════════════════════════════════
+
+⚠️ WAVE_NUMBER = ?
+⚠️ ORANGE_MONEY_NUMBER = ?
+
+✅ WHATSAPP_SUPPORT_NUMBER = +225704764443 (déjà configuré)
+
+═══════════════════════════════════════════════════════
+  DÉMARRER LE SITE
+═══════════════════════════════════════════════════════
+
+Après avoir créé .env :
+
+1. npm install
+2. npm start
+3. Ouvrir http://localhost:3001
+
+═══════════════════════════════════════════════════════
+  RÉSUMÉ FINAL
+═══════════════════════════════════════════════════════
+
+✅ Date configurée : Mardi 4 Novembre 2024
+✅ Horaires configurés : 1h30 par jour
+✅ Prix : 50,000 FCFA
+✅ WhatsApp : +225704764443 (même que formation)
+⏳ Wave : À ajouter dans .env
+⏳ Orange Money : À ajouter dans .env
+
+🎯 LE SITE EST PRÊT À 98% !
+
+Il ne manque QUE les numéros Wave et Orange Money 
+dans le fichier .env
+
+═══════════════════════════════════════════════════════
