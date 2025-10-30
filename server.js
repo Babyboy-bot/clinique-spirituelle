@@ -13,7 +13,17 @@ const PORT = process.env.PORT || 3001;
 app.use(cors());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
-app.use(express.static(path.join(__dirname)));
+
+// Servir les fichiers statiques avec les bons content-types
+app.use(express.static(path.join(__dirname), {
+    setHeaders: (res, filePath) => {
+        if (filePath.endsWith('.xml')) {
+            res.setHeader('Content-Type', 'application/xml');
+        } else if (filePath.endsWith('.txt')) {
+            res.setHeader('Content-Type', 'text/plain');
+        }
+    }
+}));
 
 // Database setup
 const db = new sqlite3.Database('./consultations.db', (err) => {
