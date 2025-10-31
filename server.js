@@ -116,7 +116,7 @@ function createTable() {
             db.get('SELECT COUNT(*) as count FROM sessions WHERE statut = "ouverte"', [], (err, row) => {
                 if (!err && row.count === 0) {
                     db.run(`INSERT INTO sessions (date_debut, heure, places_total, statut, type_session, description) 
-                            VALUES ('2025-11-04', '18:00', 20, 'ouverte', 'en_ligne', 'Session intensive de traitement spirituel - 4 jours consécutifs')`,
+                            VALUES ('2025-11-04', '18:00', 10, 'ouverte', 'en_ligne', 'Session intensive de traitement spirituel - 4 jours consécutifs')`,
                         (err) => {
                             if (!err) {
                                 console.log('✅ Session par défaut créée (4 Nov 2025)');
