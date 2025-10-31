@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Certificat - La Clinique Spirituelle</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Georgia', serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 2rem;
+        }
+
+        .certificate-container {
+            background: white;
+            width: 100%;
+            max-width: 900px;
+            padding: 3rem;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            border: 15px solid;
+            border-image: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f6d365 100%) 1;
+            position: relative;
+        }
+
+        .certificate-header {
+            text-align: center;
+            margin-bottom: 2rem;
+            border-bottom: 3px double #667eea;
+            padding-bottom: 1.5rem;
+        }
+
+        .logo {
+            width: 120px;
+            height: auto;
+            margin-bottom: 1rem;
+        }
+
+        .certificate-title {
+            font-size: 2.5rem;
+            color: #667eea;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            margin-bottom: 0.5rem;
+        }
+
+        .certificate-subtitle {
+            font-size: 1.2rem;
+            color: #764ba2;
+            font-style: italic;
+        }
+
+        .certificate-body {
+            text-align: center;
+            padding: 2rem 0;
+        }
+
+        .certificate-text {
+            font-size: 1.1rem;
+            color: #333;
+            line-height: 2;
+            margin-bottom: 2rem;
+        }
+
+        .participant-name {
+            font-size: 2rem;
+            color: #667eea;
+            font-weight: bold;
+            text-decoration: underline;
+            text-decoration-color: #f6d365;
+            text-decoration-thickness: 3px;
+            margin: 2rem 0;
+            padding: 1rem;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            border-radius: 10px;
+        }
+
+        .treatment-details {
+            background: #f5f7fa;
+            padding: 1.5rem;
+            border-radius: 10px;
+            margin: 2rem 0;
+            border-left: 5px solid #667eea;
+        }
+
+        .treatment-details p {
+            font-size: 1rem;
+            color: #555;
+            margin: 0.5rem 0;
+        }
+
+        .certificate-footer {
+            display: flex;
+            justify-content: space-around;
+            margin-top: 3rem;
+            padding-top: 2rem;
+            border-top: 2px solid #e0e0e0;
+        }
+
+        .signature-block {
+            text-align: center;
+        }
+
+        .signature-line {
+            width: 200px;
+            border-top: 2px solid #333;
+            margin: 2rem auto 0.5rem;
+        }
+
+        .signature-name {
+            font-weight: bold;
+            color: #667eea;
+            font-size: 1.1rem;
+        }
+
+        .signature-title {
+            font-size: 0.9rem;
+            color: #666;
+            font-style: italic;
+        }
+
+        .certificate-date {
+            text-align: center;
+            margin-top: 2rem;
+            font-size: 0.95rem;
+            color: #666;
+        }
+
+        .seal {
+            position: absolute;
+            bottom: 3rem;
+            right: 3rem;
+            width: 100px;
+            height: 100px;
+            border: 3px solid #667eea;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            font-weight: bold;
+            font-size: 0.7rem;
+            text-align: center;
+            padding: 10px;
+            transform: rotate(-15deg);
+        }
+
+        .ornament {
+            text-align: center;
+            font-size: 2rem;
+            color: #f6d365;
+            margin: 1rem 0;
+        }
+
+        @media print {
+            body {
+                background: white;
+            }
+            .certificate-container {
+                box-shadow: none;
+                max-width: 100%;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .certificate-container {
+                padding: 1.5rem;
+                border-width: 8px;
+            }
+            .certificate-title {
+                font-size: 1.8rem;
+            }
+            .participant-name {
+                font-size: 1.5rem;
+            }
+            .seal {
+                width: 70px;
+                height: 70px;
+                font-size: 0.6rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="certificate-container">
+        <!-- Sceau officiel -->
+        <div class="seal">
+            MONT<br>CARMEL<br>✓
+        </div>
+
+        <!-- En-tête -->
+        <div class="certificate-header">
+            <img src="logo-clinique.png" alt="Logo" class="logo">
+            <h1 class="certificate-title">Certificat</h1>
+            <p class="certificate-subtitle">de Participation et d'Achèvement</p>
+        </div>
+
+        <!-- Ornement -->
+        <div class="ornament">✦ ✦ ✦</div>
+
+        <!-- Corps du certificat -->
+        <div class="certificate-body">
+            <p class="certificate-text">
+                Ce certificat atteste que
+            </p>
+
+            <div class="participant-name" id="participantName">
+                [Nom du Participant]
+            </div>
+
+            <p class="certificate-text">
+                a complété avec succès le programme intensif de traitement spirituel<br>
+                de <strong>La Clinique Spirituelle - Mont Carmel</strong>
+            </p>
+
+            <!-- Détails du traitement -->
+            <div class="treatment-details">
+                <p><strong>📋 Programme :</strong> Traitement Spirituel Intensif sur 4 Jours</p>
+                <p><strong>📅 Dates :</strong> <span id="treatmentDates">[Dates]</span></p>
+                <p><strong>🎯 Problème traité :</strong> <span id="problemTreated">[Problème]</span></p>
+                <p><strong>⏱️ Durée totale :</strong> 16 heures (4h x 4 jours)</p>
+            </div>
+
+            <p class="certificate-text">
+                Ce participant a démontré un engagement total, une participation active<br>
+                et a reçu sa délivrance spirituelle selon la Parole de Dieu.
+            </p>
+        </div>
+
+        <!-- Ornement -->
+        <div class="ornament">✦ ✦ ✦</div>
+
+        <!-- Pied de page avec signatures -->
+        <div class="certificate-footer">
+            <div class="signature-block">
+                <div class="signature-line"></div>
+                <p class="signature-name">Frère Elie Kassi Philippe</p>
+                <p class="signature-title">Accompagnateur Spirituel</p>
+                <p class="signature-title">Fondateur du Mont Carmel</p>
+            </div>
+        </div>
+
+        <!-- Date -->
+        <div class="certificate-date">
+            <p>Délivré le <span id="certificateDate">[Date]</span></p>
+            <p style="margin-top: 0.5rem; font-size: 0.85rem;">
+                <strong>Communauté Chrétienne du Mont Carmel</strong><br>
+                Côte d'Ivoire • États-Unis • Europe
+            </p>
+        </div>
+    </div>
+
+    <script>
+        // Fonction pour remplir le certificat avec les données de l'URL
+        function fillCertificate() {
+            const urlParams = new URLSearchParams(window.location.search);
+            
+            const name = urlParams.get('nom') || '[Nom du Participant]';
+            const dates = urlParams.get('dates') || '[Dates]';
+            const problem = urlParams.get('probleme') || '[Problème]';
+            const date = urlParams.get('date') || new Date().toLocaleDateString('fr-FR', {
+                day: 'numeric',
+                month: 'long',
+                year: 'numeric'
+            });
+
+            document.getElementById('participantName').textContent = name;
+            document.getElementById('treatmentDates').textContent = dates;
+            document.getElementById('problemTreated').textContent = problem;
+            document.getElementById('certificateDate').textContent = date;
+        }
+
+        // Remplir au chargement
+        fillCertificate();
+
+        // Fonction pour imprimer
+        function printCertificate() {
+            window.print();
+        }
+
+        // Ajouter un bouton d'impression (optionnel)
+        window.addEventListener('load', () => {
+            // Vous pouvez ajouter un bouton d'impression si nécessaire
+        });
+    </script>
+</body>
+</html>

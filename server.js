@@ -96,7 +96,7 @@ function createTable() {
             id INTEGER PRIMARY KEY AUTOINCREMENT,
             date_debut TEXT NOT NULL,
             heure TEXT NOT NULL,
-            places_total INTEGER DEFAULT 20,
+            places_total INTEGER DEFAULT 10,
             places_reservees INTEGER DEFAULT 0,
             statut TEXT DEFAULT 'ouverte',
             type_session TEXT DEFAULT 'en_ligne',
@@ -330,7 +330,7 @@ app.post('/api/sessions', (req, res) => {
     const sql = `INSERT INTO sessions (date_debut, heure, places_total, type_session, description, statut) 
                  VALUES (?, ?, ?, ?, ?, 'ouverte')`;
     
-    db.run(sql, [date_debut, heure, places_total || 20, type_session || 'en_ligne', description], function(err) {
+    db.run(sql, [date_debut, heure, places_total || 10, type_session || 'en_ligne', description], function(err) {
         if (err) {
             console.error('Erreur:', err);
             return res.status(500).json({ error: 'Erreur serveur' });
