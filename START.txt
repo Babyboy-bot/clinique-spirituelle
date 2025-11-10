@@ -39,7 +39,7 @@
 ✅ index.html - Site web adapté pour La Clinique
    → Slogan : "Venez avec votre problème, repartez avec la solution"
    → Concept médical spirituel
-   → 4 jours consécutifs
+   → 3 jours intensifs (vendredi-dimanche)
    → Prix : 50,000 FCFA
    → Formulaire avec : problème spécifique, niveau urgence, depuis quand
 
@@ -80,15 +80,14 @@
    ❓ Horaires Jour 1 : __h__ - __h__
    ❓ Horaires Jour 2 : __h__ - __h__
    ❓ Horaires Jour 3 : __h__ - __h__
-   ❓ Horaires Jour 4 : __h__ - __h__
-
+   ❓ 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
   DIFFÉRENCES AVEC FORMATION SPIRITUELLE
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
 CLINIQUE                     FORMATION
 ------------------------------------------
-4 jours consécutifs          4 samedis (1 mois)
+3 jours intensifs (vendredi-dimanche)          4 samedis (1 mois)
 50,000 FCFA                  20,000 FCFA
 Traitement intensif          Apprentissage progressif
 Problème spécifique          Formation générale

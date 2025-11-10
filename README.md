@@ -4,11 +4,11 @@
 
 ## 📋 Description
 
-La Clinique Spirituelle est un **traitement intensif sur 4 jours consécutifs** dirigé par Frère Elie Kassi Philippe.
+La Clinique Spirituelle est un **traitement intensif sur 3 jours intensifs (vendredi-dimanche)** dirigé par Frère Elie Kassi Philippe.
 
 ### 🎯 Concept Unique
 
-- **Format** : 4 jours consécutifs (1h30 par jour)
+- **Format** : 3 jours intensifs (vendredi-dimanche) (12h)
 - **Prix** : 50,000 FCFA
 - **Approche** : Traitement médical spirituel personnalisé
 - **Public** : Personnes ayant un problème spirituel spécifique urgent

@@ -30,7 +30,7 @@ APRÈS: <h1>La Clinique Spirituelle</h1>
 
 **Sous-titre** :
 ```html
-APRÈS: Un traitement spirituel intensif sur 4 jours consécutifs pour résoudre vos problèmes à la racine. 
+APRÈS: Un traitement spirituel intensif sur 3 jours intensifs (vendredi-dimanche) pour résoudre vos problèmes à la racine. 
        Diagnostic complet, traitement ciblé, guérison durable par la puissance de la Parole de Dieu.
 ```
 
@@ -87,7 +87,7 @@ La Clinique Spirituelle n'est pas une formation, c'est un traitement médical sp
 APRÈS: <h2>Le Traitement sur 4 Jours</h2>
 ```
 
-**Programme** - Remplacer les 4 samedis par :
+**Programme** - Remplacer les 3 jours (vendredi-dimanche) par :
 - **JOUR 1** : Consultation & Diagnostic
 - **JOUR 2** : Traitement Phase 1
 - **JOUR 3** : Traitement Phase 2  
@@ -101,8 +101,8 @@ APRÈS: 50,000 FCFA
 
 **Durée** :
 ```html
-AVANT: 4 samedis • 12 heures • Samedis 15h-18h (GMT)
-APRÈS: 4 jours consécutifs • [HORAIRES À DÉFINIR]
+AVANT: 3 jours (vendredi-dimanche) • 12 heures • Samedis 15h-18h (GMT)
+APRÈS: 3 jours intensifs (vendredi-dimanche) • [HORAIRES À DÉFINIR]
 ```
 
 **Prochaine session** :
@@ -114,7 +114,7 @@ APRÈS: Mardi prochain [À CONFIRMER]
 ```html
 <div style="background: gradient violet; padding: 2rem; text-align: center; color: white;">
     <h3>✨ Résultats de la Semaine Dernière</h3>
-    <p>8 personnes sont venues avec leurs problèmes. Après 4 jours, elles sont reparties avec leurs solutions.</p>
+    <p>8 personnes sont venues avec leurs problèmes. Après 3 jours, elles sont reparties avec leurs solutions.</p>
 </div>
 ```
 
@@ -145,7 +145,7 @@ APRÈS: Médecin Spirituel & Fondateur du Mont Carmel
 **AJOUTER citation** :
 ```html
 <div style="background: #fff3cd; padding: 1.5rem;">
-    <em>"Chaque problème a une solution dans la Parole de Dieu. En 4 jours, nous traitons intensivement 
+    <em>"Chaque problème a une solution dans la Parole de Dieu. En 3 jours, nous traitons intensivement 
     ce que vous portez parfois depuis des années."</em>
     - Frère Elie
 </div>
@@ -156,16 +156,16 @@ APRÈS: Médecin Spirituel & Fondateur du Mont Carmel
 **REMPLACER toutes les questions par** :
 
 #### Q1 : Quelle est la différence entre La Clinique et la Formation ?
-**R** : La Clinique = traitement intensif problème spécifique (4 jours, 50K). Formation = apprentissage général (4 samedis, 20K).
+**R** : La Clinique = traitement intensif problème spécifique (3 jours, 50K). Formation = apprentissage général (3 jours (vendredi-dimanche), 20K).
 
-#### Q2 : Comment se déroulent les 4 jours ?
-**R** : Jour 1: Diagnostic. Jour 2-3: Traitement. Jour 4: Consolidation. [Horaires à définir]
+#### Q2 : Comment se déroulent les 3 jours ?
+**R** : Jour 1: Diagnostic. Jour 2: Traitement. Jour 3: Consolidation. [Horaires à définir]
 
 #### Q3 : Présence physique ou en ligne ?
 **R** : [À CONFIRMER AVEC FRÈRE ELIE]
 
 #### Q4 : Le prix de 50,000 FCFA est-il fixe ?
-**R** : Oui, tarif unique pour traitement complet sur 4 jours.
+**R** : Oui, tarif unique pour traitement complet sur 3 jours.
 
 #### Q5 : Que faire après le traitement ?
 **R** : Suivi WhatsApp, prescription post-traitement, maintenance spirituelle.
@@ -230,7 +230,7 @@ APRÈS: <i class="fas fa-calendar-check"></i> Réserver Ma Consultation
 **Note formulaire** :
 ```html
 APRÈS: Vous recevrez une confirmation WhatsApp avec les instructions de paiement (50,000 FCFA) 
-       et les détails de votre traitement sur 4 jours.
+       et les détails de votre traitement sur 3 jours.
 ```
 
 ### 9. FOOTER (Lignes 971-1005)
@@ -273,7 +273,7 @@ fetch('/api/consultation', {  // Au lieu de /api/inscription
 - [ ] Tous les "étudiant" → "patient/consultant"
 - [ ] Tous les "formateur" → "médecin spirituel"
 - [ ] Prix 20,000 → 50,000
-- [ ] 4 samedis → 4 jours consécutifs
+- [ ] 3 jours (vendredi-dimanche) → 3 jours intensifs (vendredi-dimanche)
 - [ ] Prochaine session: À définir → Mardi prochain [DATE]
 - [ ] Formulaire avec problème_specifique, niveau_urgence, depuis_quand
 - [ ] Ton médical/urgent partout

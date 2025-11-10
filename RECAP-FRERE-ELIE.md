@@ -129,13 +129,13 @@ npm start
 
 ---
 
-## 📊 DIFFÉRENCES CLINIQUE VS FORMATION
+## DIFFÉRENCES CLINIQUE VS FORMATION
 
 | Aspect | Clinique Spirituelle | Formation Spirituelle |
 |--------|---------------------|----------------------|
 | **Concept** | Traitement médical spirituel | École de la foi |
 | **Objectif** | Résoudre 1 problème spécifique | Formation complète progressive |
-| **Durée** | 4 jours consécutifs | 4 samedis (1 mois) |
+| **Durée** | 3 jours intensifs (vendredi-dimanche) | 4 samedis (1 mois) |
 | **Prix** | 50,000 FCFA | 20,000 FCFA |
 | **Format** | Intensif, urgent | Progressif, pédagogique |
 | **Public** | Personne avec problème urgent | Personne en développement spirituel |

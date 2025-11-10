@@ -116,7 +116,7 @@ function createTable() {
             db.get('SELECT COUNT(*) as count FROM sessions WHERE statut = "ouverte"', [], (err, row) => {
                 if (!err && row.count === 0) {
                     db.run(`INSERT INTO sessions (date_debut, heure, places_total, statut, type_session, description) 
-                            VALUES ('2025-11-04', '18:00', 10, 'ouverte', 'en_ligne', 'Session intensive de traitement spirituel - 4 jours consécutifs')`,
+                            VALUES ('2025-11-04', '18:00', 10, 'ouverte', 'en_ligne', 'Session intensive de traitement spirituel - 12 heures (4h x 3 jours) (vendredi-dimanche)')`,
                         (err) => {
                             if (!err) {
                                 console.log('✅ Session par défaut créée (4 Nov 2025)');
@@ -566,8 +566,8 @@ function sendConfirmationEmail(email, prenom, nom) {
                 
                 <div style="background: #d4edda; padding: 20px; border-radius: 10px; margin: 20px 0;">
                     <h3 style="color: #155724;">📅 Informations Traitement</h3>
-                    <p><strong>Format:</strong> 4 jours consécutifs de traitement intensif</p>
-                    <p><strong>Durée:</strong> 1h30 par jour</p>
+                    <p><strong>Format:</strong> 3 jours (vendredi-dimanche) de traitement intensif</p>
+                    <p><strong>Durée:</strong> 4h par jour</p>
                     <p><strong>Prochaine session:</strong> Mardi 4 Novembre 2024</p>
                     <p><strong>Prix:</strong> 50,000 FCFA</p>
                 </div>
@@ -629,7 +629,7 @@ Après validation du paiement:
 ✓ Groupe WhatsApp des participants
 
 📅 *INFORMATIONS TRAITEMENT:*
-• Format: 4 jours consécutifs
+• Format: 3 jours (vendredi-dimanche)
 • Durée: 1h30 par jour
 • Prochaine session: Mardi 4 Novembre 2024
 • Type: Traitement spirituel intensif personnalisé
