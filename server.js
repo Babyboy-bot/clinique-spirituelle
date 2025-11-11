@@ -263,7 +263,7 @@ app.get('/api/session/active', (req, res) => {
     // Récupérer toutes les sessions ouvertes futures ou actuelles
     const sql = `SELECT * FROM sessions 
                  WHERE statut = 'ouverte' 
-                 AND date(date_debut) >= date('now', '-4 days')
+                 AND date(date_debut) >= date('now', '-3 days')
                  ORDER BY date_debut ASC 
                  LIMIT 2`;
     
@@ -285,7 +285,7 @@ app.get('/api/session/active', (req, res) => {
             ...row,
             places_disponibles: row.places_total - row.places_reservees,
             est_complete: row.places_reservees >= row.places_total,
-            est_en_cours: new Date(row.date_debut) <= now && new Date(row.date_debut) >= new Date(now.getTime() - 4*24*60*60*1000),
+            est_en_cours: new Date(row.date_debut) <= now && new Date(row.date_debut) >= new Date(now.getTime() - 3*24*60*60*1000),
             est_future: new Date(row.date_debut) > now
         }));
         

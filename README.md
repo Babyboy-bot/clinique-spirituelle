@@ -56,7 +56,7 @@ Avant de finaliser le site, demandez :
 **Vocabulaire à utiliser** :
 - ✅ Traiter, Guérir, Consultation, Diagnostic, Prescription, Remède
 - ✅ "Venez avec votre problème, repartez avec la solution"
-- ✅ "Traitement intensif sur 4 jours"
+- ✅ "Traitement intensif sur 3 jours"
 - ✅ "Diagnostic spirituel complet"
 - ❌ Éviter : Apprendre, Étudier, Formation, Cours
 
